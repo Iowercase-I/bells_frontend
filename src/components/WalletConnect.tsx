@@ -1,5 +1,3 @@
-"use client";
-
 import { useNintondo } from "nintondo-sdk/react";
 import { initNintondo } from "nintondo-sdk";
 import type { NetworkType } from "nintondo-sdk/types";
@@ -22,7 +20,7 @@ export default function WalletConnect() {
   const [isChecking, setIsChecking] = useState(true);
   const [manualNintondo, setManualNintondo] = useState<any>(null);
 
-  const { nintondo, isConnected } = useNintondo();
+  const { nintondo } = useNintondo();
 
   // Try manual initialization as fallback - keep checking periodically
   useEffect(() => {
@@ -145,7 +143,7 @@ export default function WalletConnect() {
       }
       
       if (!wallet) {
-        const debug = getDebugInfo();
+        getDebugInfo(); // For debugging if needed
         setError(`Nintondo Wallet object not found after ${maxRetries} attempts.\n\n` +
           `The extension works on nintondo.io, so it's a localhost-specific issue.\n\n` +
           `QUICK FIXES:\n` +
